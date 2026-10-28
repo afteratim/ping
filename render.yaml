@@ -1,0 +1,12 @@
+
+services:
+  - type: web
+    name: url-pinger
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app --workers 1 --threads 4 --timeout 60
+    envVars:
+      - key: URLS
+        sync: false
+      - key: PING_INTERVAL
+        value: "300"
